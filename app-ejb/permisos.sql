@@ -1,4 +1,4 @@
-REATE TABLE "tb_acceso" (
+CREATE TABLE "tb_acceso" (
 "id_acceso" serial2 NOT NULL,
 "_id_opcion" int2,
 "_id_rol" int2,
