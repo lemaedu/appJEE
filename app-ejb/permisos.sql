@@ -221,6 +221,6 @@ ALTER TABLE "tb_acceso" ADD CONSTRAINT "fk_tb_accesos_tb_opcion_1" FOREIGN KEY (
 ALTER TABLE "tb_acceso" ADD CONSTRAINT "fk_tb_accesos_tb_rol_1" FOREIGN KEY ("_id_rol") REFERENCES "tb_rol" ("id_rol") ON DELETE NO ACTION ON UPDATE NO ACTION;
 ALTER TABLE "tb_opcion" ADD CONSTRAINT "fk_tb_opcion_tb_menu_1" FOREIGN KEY ("_id_menu") REFERENCES "tb_menu" ("id_menu") ON DELETE NO ACTION ON UPDATE NO ACTION;
 ALTER TABLE "tb_usuario_rol" ADD CONSTRAINT "fk_tb_usuario_rol_tb_rol_1" FOREIGN KEY ("_id_rol") REFERENCES "tb_rol" ("id_rol") ON DELETE NO ACTION ON UPDATE NO ACTION;
-ALTER TABLE "tb_usuario_rol" ADD CONSTRAINT "fk_tb_usuario_rol_usuario_1" FOREIGN KEY ("_id_usuario") REFERENCES "tb_usuario" ("id_user") ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE "tb_usuario_rol" ADD CONSTRAINT "fk_tb_usuario_rol_usuario_1" FOREIGN KEY ("_id_user") REFERENCES "tb_usuario" ("id_user") ON DELETE NO ACTION ON UPDATE NO ACTION;
 ALTER TABLE "tb_menu" ADD CONSTRAINT "fk_tb_menu_tb_ubicacion_menu_1" FOREIGN KEY ("_id_ubicacion_menu") REFERENCES "tb_ubicacion_menu" ("id_ubicacion_menu") ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE "tb_rol" ADD CONSTRAINT "fk_tb_rol_tb_modulo_1" FOREIGN KEY ("_id_modulo") REFERENCES "tb_modulo" ("id_modulo");
