@@ -170,7 +170,7 @@ COMMENT ON COLUMN "tb_usuario"."date_delete" IS 'fecha de baja';
 ALTER TABLE "tb_usuario" OWNER TO "postgres";
 
 CREATE TABLE "tb_usuario_rol" (
-"id_usuario_rol" serial4 NOT NULL,
+"id_usuario_rol" serial2 NOT NULL,
 "_id_rol" int2,
 "_id_usuario" int8,
 "status" bool DEFAULT true,
