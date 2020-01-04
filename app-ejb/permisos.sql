@@ -1,7 +1,7 @@
 CREATE TABLE "tb_acceso" (
-"id_acceso" serial2 NOT NULL,
-"_id_opcion" int2,
-"_id_rol" int2,
+"id_acceso" serial4 NOT NULL,
+"_id_opcion" int4,
+"_id_rol" int4,
 "status" bool,
 "user_create" int8,
 "user_update" int8,
@@ -25,10 +25,10 @@ COMMENT ON COLUMN "tb_acceso"."date_delete" IS 'fecha baja';
 ALTER TABLE "tb_acceso" OWNER TO "postgres";
 
 CREATE TABLE "tb_menu" (
-"id_menu" serial2 NOT NULL,
+"id_menu" serial4 NOT NULL,
 "nombre" varchar(50),
 "img" varchar(75),
-"_id_ubicacion_menu" int2,
+"_id_ubicacion_menu" int4,
 "status" bool DEFAULT true,
 "user_create" int8,
 "user_update" int8,
@@ -53,12 +53,12 @@ COMMENT ON COLUMN "tb_menu"."date_delete" IS 'fecha de baja';
 ALTER TABLE "tb_menu" OWNER TO "postgres";
 
 CREATE TABLE "tb_opcion" (
-"id_opcion" serial2 NOT NULL,
-"_id_menu" int2,
+"id_opcion" serial4 NOT NULL,
+"_id_menu" int4,
 "nombre" varchar(50),
 "link" varchar(150),
 "img" varchar(100),
-"orden" int2,
+"orden" int4,
 "status" bool,
 "user_create" int8,
 "user_update" int8,
@@ -85,10 +85,10 @@ COMMENT ON COLUMN "tb_opcion"."date_delete" IS 'fecha de baja';
 ALTER TABLE "tb_opcion" OWNER TO "postgres";
 
 CREATE TABLE "tb_rol" (
-"id_rol" serial2 NOT NULL,
+"id_rol" serial4 NOT NULL,
 "nombre" varchar(50),
 "descripcion" varchar(100),
-"_id_modulo" int2,
+"_id_modulo" int4,
 "status" bool,
 "user_create" int8,
 "user_update" int8,
@@ -112,7 +112,7 @@ COMMENT ON COLUMN "tb_rol"."date_delete" IS 'fecha baja';
 ALTER TABLE "tb_rol" OWNER TO "postgres";
 
 CREATE TABLE "tb_ubicacion_menu" (
-"id_ubicacion_menu" serial2 NOT NULL,
+"id_ubicacion_menu" serial4 NOT NULL,
 "ubicacion" varchar(50),
 "status" bool DEFAULT true,
 "user_create" int8,
@@ -170,8 +170,8 @@ COMMENT ON COLUMN "tb_usuario"."date_delete" IS 'fecha de baja';
 ALTER TABLE "tb_usuario" OWNER TO "postgres";
 
 CREATE TABLE "tb_usuario_rol" (
-"id_usuario_rol" serial2 NOT NULL,
-"_id_rol" int2,
+"id_usuario_rol" serial4 NOT NULL,
+"_id_rol" int4,
 "_id_usuario" int8,
 "status" bool DEFAULT true,
 "user_create" int8,
@@ -193,7 +193,7 @@ COMMENT ON COLUMN "tb_usuario_rol"."date_delete" IS 'fecha de baja';
 ALTER TABLE "tb_usuario_rol" OWNER TO "postgres";
 
 CREATE TABLE "tb_modulo" (
-"id_modulo" serial2 NOT NULL,
+"id_modulo" serial4 NOT NULL,
 "nombre" text,
 "descripcion" text,
 "status" bool,
@@ -224,4 +224,3 @@ ALTER TABLE "tb_usuario_rol" ADD CONSTRAINT "fk_tb_usuario_rol_tb_rol_1" FOREIGN
 ALTER TABLE "tb_usuario_rol" ADD CONSTRAINT "fk_tb_usuario_rol_usuario_1" FOREIGN KEY ("_id_usuario") REFERENCES "tb_usuario" ("id_user") ON DELETE NO ACTION ON UPDATE NO ACTION;
 ALTER TABLE "tb_menu" ADD CONSTRAINT "fk_tb_menu_tb_ubicacion_menu_1" FOREIGN KEY ("_id_ubicacion_menu") REFERENCES "tb_ubicacion_menu" ("id_ubicacion_menu") ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE "tb_rol" ADD CONSTRAINT "fk_tb_rol_tb_modulo_1" FOREIGN KEY ("_id_modulo") REFERENCES "tb_modulo" ("id_modulo");
-
