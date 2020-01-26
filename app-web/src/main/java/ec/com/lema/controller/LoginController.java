@@ -23,23 +23,23 @@ public class LoginController implements Serializable {
 
     @EJB
     private TbUsuarioFacadeLocal facadeLocal;
-    
-    
+
     private TbUsuario usuario;
     private List<TbUsuario> usuarios;
-    
+
     public LoginController() {
     }
-    
-    public void login(){
-        int validar_ingreso=validarIngreso();
+
+    public void login() {
+        int validar_ingreso = validarIngreso();
     }
 
     private int validarIngreso() {
-        if(usuario!=null && !usuario.getAlias().isEmpty() && !usuario.getClave().isEmpty()){
+        if (usuario != null && !usuario.getAlias().isEmpty() && !usuario.getClave().isEmpty()) {
             return 0;
-        }else
+        } else {
             return 1;
+        }
     }
-    
+
 }

@@ -6,12 +6,12 @@
 package ec.com.lema.security.domain;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author LEMAEDU
+ * @author lemaedu
  */
 @Entity
 @Table(name = "tb_opcion", catalog = "db_syscom", schema = "public")
@@ -51,57 +51,43 @@ import javax.xml.bind.annotation.XmlTransient;
 public class TbOpcion implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id_opcion")
     private Short idOpcion;
-    
     @Size(max = 50)
     @Column(name = "nombre")
     private String nombre;
-    
     @Size(max = 150)
     @Column(name = "link")
     private String link;
-    
     @Size(max = 100)
     @Column(name = "img")
     private String img;
-    
     @Column(name = "orden")
     private Short orden;
-    
     @Column(name = "status")
     private Boolean status;
-    
     @Column(name = "user_create")
-    private BigInteger userCreate;
-    
+    private Integer userCreate;
     @Column(name = "user_update")
-    private BigInteger userUpdate;
-    
+    private Integer userUpdate;
     @Column(name = "user_delete")
-    private BigInteger userDelete;
-    
+    private Integer userDelete;
     @Column(name = "date_create")
     @Temporal(TemporalType.DATE)
     private Date dateCreate;
-    
     @Column(name = "date_update")
     @Temporal(TemporalType.DATE)
     private Date dateUpdate;
-    
     @Column(name = "date_delete")
     @Temporal(TemporalType.DATE)
     private Date dateDelete;
-    
-    @OneToMany(mappedBy = "idOpcion")
+    @OneToMany(mappedBy = "idOpcion", fetch = FetchType.LAZY)
     private List<TbAcceso> tbAccesoList;
-    
     @JoinColumn(name = "_id_menu", referencedColumnName = "id_menu")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private TbMenu idMenu;
 
     public TbOpcion() {
@@ -159,27 +145,27 @@ public class TbOpcion implements Serializable {
         this.status = status;
     }
 
-    public BigInteger getUserCreate() {
+    public Integer getUserCreate() {
         return userCreate;
     }
 
-    public void setUserCreate(BigInteger userCreate) {
+    public void setUserCreate(Integer userCreate) {
         this.userCreate = userCreate;
     }
 
-    public BigInteger getUserUpdate() {
+    public Integer getUserUpdate() {
         return userUpdate;
     }
 
-    public void setUserUpdate(BigInteger userUpdate) {
+    public void setUserUpdate(Integer userUpdate) {
         this.userUpdate = userUpdate;
     }
 
-    public BigInteger getUserDelete() {
+    public Integer getUserDelete() {
         return userDelete;
     }
 
-    public void setUserDelete(BigInteger userDelete) {
+    public void setUserDelete(Integer userDelete) {
         this.userDelete = userDelete;
     }
 
@@ -246,7 +232,7 @@ public class TbOpcion implements Serializable {
 
     @Override
     public String toString() {
-        return "ec.com.lema.security.domain.TbOpcion[ idOpcion=" + idOpcion + " ]";
+        return "ec.com.lema.security.entity.TbOpcion[ idOpcion=" + idOpcion + " ]";
     }
     
 }

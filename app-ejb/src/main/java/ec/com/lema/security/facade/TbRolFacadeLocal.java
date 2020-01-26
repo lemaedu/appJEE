@@ -11,7 +11,7 @@ import javax.ejb.Local;
 
 /**
  *
- * @author LEMAEDU
+ * @author lemaedu
  */
 @Local
 public interface TbRolFacadeLocal {

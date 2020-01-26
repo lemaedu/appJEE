@@ -6,16 +6,13 @@
 package ec.com.lema.security.facade;
 
 import ec.com.lema.security.domain.TbUsuario;
-import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
 
 /**
  *
- * @author LEMAEDU
+ * @author lemaedu
  */
 @Stateless
 public class TbUsuarioFacade extends AbstractFacade<TbUsuario> implements TbUsuarioFacadeLocal {
@@ -31,12 +28,5 @@ public class TbUsuarioFacade extends AbstractFacade<TbUsuario> implements TbUsua
     public TbUsuarioFacade() {
         super(TbUsuario.class);
     }
-
-    @Override
-    public List<TbUsuario> findByAliasAndPassword(String alias, String password) {
-        TypedQuery<TbUsuario> query
-                = em.createQuery("SELECT t FROM TbUsuario t WHERE t.alias = :alias AND t.clave = :clave ", TbUsuario.class);
-        List<TbUsuario> results = query.getResultList();
-        return results;
-    }
+    
 }

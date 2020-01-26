@@ -11,7 +11,7 @@ import javax.ejb.Local;
 
 /**
  *
- * @author LEMAEDU
+ * @author lemaedu
  */
 @Local
 public interface TbUsuarioFacadeLocal {
@@ -29,7 +29,5 @@ public interface TbUsuarioFacadeLocal {
     List<TbUsuario> findRange(int[] range);
 
     int count();
-
-    List<TbUsuario> findByAliasAndPassword(String alias, String password);
-
+    
 }

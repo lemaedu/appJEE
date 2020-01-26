@@ -12,7 +12,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author LEMAEDU
+ * @author lemaedu
  */
 @Stateless
 public class TbRolFacade extends AbstractFacade<TbRol> implements TbRolFacadeLocal {

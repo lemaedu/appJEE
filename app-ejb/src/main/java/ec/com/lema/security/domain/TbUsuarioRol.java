@@ -6,11 +6,11 @@
 package ec.com.lema.security.domain;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author LEMAEDU
+ * @author lemaedu
  */
 @Entity
 @Table(name = "tb_usuario_rol", catalog = "db_syscom", schema = "public")
@@ -43,57 +43,47 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class TbUsuarioRol implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id_usuario_rol")
-    private Integer idUsuarioRol;
-    
+    private Short idUsuarioRol;
     @Column(name = "status")
     private Boolean status;
-    
     @Column(name = "user_create")
-    private BigInteger userCreate;
-    
+    private Integer userCreate;
     @Column(name = "user_update")
-    private BigInteger userUpdate;
-    
+    private Integer userUpdate;
     @Column(name = "user_delete")
-    private BigInteger userDelete;
-    
+    private Integer userDelete;
     @Column(name = "date_create")
     @Temporal(TemporalType.DATE)
     private Date dateCreate;
-    
     @Column(name = "date_update")
     @Temporal(TemporalType.DATE)
     private Date dateUpdate;
-    
     @Column(name = "date_delete")
     @Temporal(TemporalType.DATE)
     private Date dateDelete;
-    
     @JoinColumn(name = "_id_rol", referencedColumnName = "id_rol")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private TbRol idRol;
-    
-    @JoinColumn(name = "_id_usuario", referencedColumnName = "id_user")
-    @ManyToOne
-    private TbUsuario idUsuario;
+    @JoinColumn(name = "_id_user", referencedColumnName = "id_user")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private TbUsuario idUser;
 
     public TbUsuarioRol() {
     }
 
-    public TbUsuarioRol(Integer idUsuarioRol) {
+    public TbUsuarioRol(Short idUsuarioRol) {
         this.idUsuarioRol = idUsuarioRol;
     }
 
-    public Integer getIdUsuarioRol() {
+    public Short getIdUsuarioRol() {
         return idUsuarioRol;
     }
 
-    public void setIdUsuarioRol(Integer idUsuarioRol) {
+    public void setIdUsuarioRol(Short idUsuarioRol) {
         this.idUsuarioRol = idUsuarioRol;
     }
 
@@ -105,27 +95,27 @@ public class TbUsuarioRol implements Serializable {
         this.status = status;
     }
 
-    public BigInteger getUserCreate() {
+    public Integer getUserCreate() {
         return userCreate;
     }
 
-    public void setUserCreate(BigInteger userCreate) {
+    public void setUserCreate(Integer userCreate) {
         this.userCreate = userCreate;
     }
 
-    public BigInteger getUserUpdate() {
+    public Integer getUserUpdate() {
         return userUpdate;
     }
 
-    public void setUserUpdate(BigInteger userUpdate) {
+    public void setUserUpdate(Integer userUpdate) {
         this.userUpdate = userUpdate;
     }
 
-    public BigInteger getUserDelete() {
+    public Integer getUserDelete() {
         return userDelete;
     }
 
-    public void setUserDelete(BigInteger userDelete) {
+    public void setUserDelete(Integer userDelete) {
         this.userDelete = userDelete;
     }
 
@@ -161,12 +151,12 @@ public class TbUsuarioRol implements Serializable {
         this.idRol = idRol;
     }
 
-    public TbUsuario getIdUsuario() {
-        return idUsuario;
+    public TbUsuario getIdUser() {
+        return idUser;
     }
 
-    public void setIdUsuario(TbUsuario idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setIdUser(TbUsuario idUser) {
+        this.idUser = idUser;
     }
 
     @Override
@@ -191,7 +181,7 @@ public class TbUsuarioRol implements Serializable {
 
     @Override
     public String toString() {
-        return "ec.com.lema.security.domain.TbUsuarioRol[ idUsuarioRol=" + idUsuarioRol + " ]";
+        return "ec.com.lema.security.entity.TbUsuarioRol[ idUsuarioRol=" + idUsuarioRol + " ]";
     }
     
 }

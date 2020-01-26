@@ -6,12 +6,12 @@
 package ec.com.lema.security.domain;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author LEMAEDU
+ * @author lemaedu
  */
 @Entity
 @Table(name = "tb_rol", catalog = "db_syscom", schema = "public")
@@ -49,53 +49,40 @@ import javax.xml.bind.annotation.XmlTransient;
 public class TbRol implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id_rol")
     private Short idRol;
-    
     @Size(max = 50)
     @Column(name = "nombre")
     private String nombre;
-    
     @Size(max = 100)
     @Column(name = "descripcion")
     private String descripcion;
-    
     @Column(name = "status")
     private Boolean status;
-    
     @Column(name = "user_create")
-    private BigInteger userCreate;
-    
+    private Integer userCreate;
     @Column(name = "user_update")
-    private BigInteger userUpdate;
-    
+    private Integer userUpdate;
     @Column(name = "user_delete")
-    private BigInteger userDelete;
-    
+    private Integer userDelete;
     @Column(name = "date_create")
     @Temporal(TemporalType.DATE)
     private Date dateCreate;
-    
     @Column(name = "date_update")
     @Temporal(TemporalType.DATE)
     private Date dateUpdate;
-    
     @Column(name = "date_delete")
     @Temporal(TemporalType.DATE)
     private Date dateDelete;
-    
-    @OneToMany(mappedBy = "idRol")
+    @OneToMany(mappedBy = "idRol", fetch = FetchType.LAZY)
     private List<TbUsuarioRol> tbUsuarioRolList;
-    
     @JoinColumn(name = "_id_modulo", referencedColumnName = "id_modulo")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private TbModulo idModulo;
-    
-    @OneToMany(mappedBy = "idRol")
+    @OneToMany(mappedBy = "idRol", fetch = FetchType.LAZY)
     private List<TbAcceso> tbAccesoList;
 
     public TbRol() {
@@ -137,27 +124,27 @@ public class TbRol implements Serializable {
         this.status = status;
     }
 
-    public BigInteger getUserCreate() {
+    public Integer getUserCreate() {
         return userCreate;
     }
 
-    public void setUserCreate(BigInteger userCreate) {
+    public void setUserCreate(Integer userCreate) {
         this.userCreate = userCreate;
     }
 
-    public BigInteger getUserUpdate() {
+    public Integer getUserUpdate() {
         return userUpdate;
     }
 
-    public void setUserUpdate(BigInteger userUpdate) {
+    public void setUserUpdate(Integer userUpdate) {
         this.userUpdate = userUpdate;
     }
 
-    public BigInteger getUserDelete() {
+    public Integer getUserDelete() {
         return userDelete;
     }
 
-    public void setUserDelete(BigInteger userDelete) {
+    public void setUserDelete(Integer userDelete) {
         this.userDelete = userDelete;
     }
 
@@ -233,7 +220,7 @@ public class TbRol implements Serializable {
 
     @Override
     public String toString() {
-        return "ec.com.lema.security.domain.TbRol[ idRol=" + idRol + " ]";
+        return "ec.com.lema.security.entity.TbRol[ idRol=" + idRol + " ]";
     }
     
 }
